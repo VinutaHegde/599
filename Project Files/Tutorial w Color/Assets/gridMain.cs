@@ -20,6 +20,8 @@ public class gridMain : MonoBehaviour
     public int scoreValA = 0, scoreValB = 0, acHand = 0;
 
     private Tile[] tileArray = new Tile[gridSize];
+    // undo edit
+    private int[] old_arr = new int[gridSize];
 
     public Text PlayerDispaly1;
     public Text PlayerDispaly2;
@@ -88,6 +90,11 @@ public class gridMain : MonoBehaviour
 
     public void updateScore(int ind)
     {
+        //undo edit
+        for(int i = 0; i < before_ar.Length; i++)
+        {
+            old_arr[i] = tileArray[i].getVal();
+        }
         int i = ind;
         if (!inTurn)
         {
