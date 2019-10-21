@@ -20,11 +20,11 @@ public class mainMenu : MonoBehaviour
     }
     public void GotoRegister()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     public void GotoPlay()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
 }

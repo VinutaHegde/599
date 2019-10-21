@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+using UnityEngine.SceneManagement;
+
 public class gridMain : MonoBehaviour
 {
     public static int gridSize = 10;
@@ -19,8 +21,8 @@ public class gridMain : MonoBehaviour
 
     private Tile[] tileArray = new Tile[gridSize];
 
-    public GameObject inhand1 ;
-    public GameObject inhand2 ;
+    public Text PlayerDispaly1;
+    public Text PlayerDispaly2;
 
     public int turn = 0;
     public bool inTurn = false;
@@ -28,6 +30,17 @@ public class gridMain : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(DBManager.score1);
+        Debug.Log(DBManager.score2);
+
+        if (DBManager.screenName1 != null && DBManager.screenName2 != null)
+        {
+            Debug.Log(DBManager.score1);
+            Debug.Log(DBManager.score2);
+            PlayerDispaly1.text = DBManager.screenName1 + ":" + DBManager.score1;
+            PlayerDispaly2.text = DBManager.screenName2 + ":" + DBManager.score2;
+        }
+
         var coinToss = new coinToss();
         turn = coinToss.getTurn();
         Debug.Log("Turn: " + turn);
@@ -286,5 +299,9 @@ public class gridMain : MonoBehaviour
         // Checks if the game has a winner
     }
 
+    public void Exit()
+    {
+        SceneManager.LoadScene(0);
+    }
     
 }

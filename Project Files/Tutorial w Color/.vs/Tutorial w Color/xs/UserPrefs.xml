@@ -1,0 +1,29 @@
+﻿<Properties StartupConfiguration="{35BE70EB-DA30-6F48-1EDA-92A217CA614A}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/ScoreManager.cs">
+    <Files>
+      <File FileName="Assets/gridMain.cs" Line="33" Column="1" />
+      <File FileName="Assets/mainMenu.cs" Line="23" Column="33" />
+      <File FileName="Assets/Play.cs" Line="33" Column="65" />
+      <File FileName="Assets/TileManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/ScoreManager.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Tutorial w Color" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="ScoreManager.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="89122839-ffad-4844-a271-3a75f7d8b19b" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

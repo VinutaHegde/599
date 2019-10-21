@@ -30,7 +30,7 @@ public class Play : MonoBehaviour
             DBManager.score1 = int.Parse(webResult[1]);
             DBManager.score2 = int.Parse(webResult[2]);
 
-            UnityEngine.SceneManagement.SceneManager.LoadScene(4);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(3);
 
         }
         else

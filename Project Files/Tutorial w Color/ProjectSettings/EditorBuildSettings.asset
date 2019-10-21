@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/landingPage.unity
+    guid: f5ffb2a97fe69409bac483dfeb8a6180
+  - enabled: 1
+    path: Assets/loadPlayers.unity
+    guid: 617dcd23fd5b04723ac4f608c4d80ae9
+  - enabled: 1
+    path: Assets/Register.unity
+    guid: 8c786b3fab0194eae909e5cc822034a9
+  - enabled: 1
+    path: Assets/Play.unity
+    guid: f972df96b72f746a8bf80f68bedda2e7
   m_configObjects: {}
