@@ -8,16 +8,27 @@ public class TileManager : MonoBehaviour
 
     public Button[] btnList;
     public Text winText;
+    public Button[] undo;
 
     public static int turn = 1;
     public static int tiles_length = 6;
     public static int coins_no = 3;
     public static int[] ar = new int[tiles_length];
+    public static int[] before_ar = new int[tiles_length];
     public static int total_coins = coins_no * tiles_length;
-    
+    public static int before_scoreA = 0;
+    public static int before_scoreB = 0;
+    public static int before_total_coins;
+    public static int count = 0;
+    public static bool check = false;
+    public static bool check_undo = true;
+
     // Start is called before the first frame update
     void Start()
     {
+        // Hides the undo button object
+        undo[0].gameObject.SetActive(false);
+        undo[1].gameObject.SetActive(false);
         // Hides the win text object
         winText.gameObject.SetActive(false);
         // Checks if the number of buttons in the list is the same as the number of tiles
@@ -47,8 +58,24 @@ public class TileManager : MonoBehaviour
     // Updates the score values for either Player A or Player B
     public static void updateScore(int ind)
     {
+    
         Debug.Log("Index: " + ind + " : value: " + ar[ind]);
         int i = ind;
+
+        if(count == 1)
+        {
+            check = true;
+            check_undo = true;
+        }
+        else
+        {
+            count += 1;
+        }
+
+        for(int a = 0; a < ar.Length; a++)
+        {
+            before_ar[a] = ar[a];
+        }
         // Checks if the tile has zero coins or not
         if (ar[i] != 0)
         {
@@ -72,11 +99,19 @@ public class TileManager : MonoBehaviour
             }
             // Adds value of ar[i -> next] to either Player A's score or B's
             if (turn == 1)
+            { 
+
+                before_scoreA = ScoreManager.scoreValA;
                 ScoreManager.scoreValA += ar[(i + 1) % tiles_length];
+            }
             else
+            {
+                before_scoreB = ScoreManager.scoreValB;
                 ScoreManager.scoreValB += ar[(i + 1) % tiles_length];
+            }
 
             Debug.Log("Coins this turn: " + ar[(i + 1) % tiles_length]); // Coins earned this turn
+            before_total_coins = total_coins;
             total_coins -= ar[(i + 1) % tiles_length]; // Deducts coins earned from Total coins 
             // Resets the value of ar[i -> next] to 0
             ar[(i + 1) % tiles_length] = 0;
@@ -86,15 +121,56 @@ public class TileManager : MonoBehaviour
         turn *= -1;
     }
 
+    public static void undoScore(bool check1, bool check2)
+    {
+        Debug.Log("Undo");
+        total_coins = before_total_coins;
+        for (int a = 0; a < ar.Length; a++)
+        {
+            ar[a] = before_ar[a];
+        }
+        for (int i = 0; i < ar.Length; i++)
+        {
+            Debug.Log(ar[i]);
+        }
+        if (turn == 1)
+        {
+            ScoreManager.scoreValB = before_scoreB;
+        }
+        else
+        {
+            ScoreManager.scoreValA = before_scoreA;
+        }
+        count = 0;
+        check_undo = false;
+        turn *= -1;
+    }
+
+
     // Updates the board for every turn
     void updateBoard()
     {
+
+        
         // Checks if the number of buttons in the list is the same as the number of tiles
         if (btnList.Length == tiles_length)
         {
+
             // Checks turn (1 => A, -1 => B)
             if (turn == 1)
             {
+
+                if (check && check_undo)
+                {
+                    undo[0].gameObject.SetActive(false);
+                    undo[1].gameObject.SetActive(true);
+                }
+                else
+                {
+                    undo[0].gameObject.SetActive(false);
+                    undo[1].gameObject.SetActive(false);
+                }
+
                 // Disables Player B buttons
                 for (int i = (tiles_length / 2); i < btnList.Length; i++)
                     btnList[i].interactable = false;
@@ -104,6 +180,18 @@ public class TileManager : MonoBehaviour
             }
             else
             {
+                 
+                if (check && check_undo)
+                {
+                    undo[0].gameObject.SetActive(true);
+                    undo[1].gameObject.SetActive(false);
+                }
+                else
+                {
+                    undo[0].gameObject.SetActive(false);
+                    undo[1].gameObject.SetActive(false);
+                }
+
                 // Disables Player A buttons
                 for (int i = 0; i < tiles_length / 2; i++)
                     btnList[i].interactable = false;
@@ -144,6 +232,8 @@ public class TileManager : MonoBehaviour
                 winText.text = "Player B wins!";
             else
                 winText.text = "It's a tie!";
+            undo[0].gameObject.SetActive(false);
+            undo[1].gameObject.SetActive(false);
         }
     }
 }

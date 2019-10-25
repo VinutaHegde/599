@@ -7,6 +7,7 @@ public class ScoreManager : MonoBehaviour
 {
     public Text[] scoreTexts;
     public static int scoreValA = 0, scoreValB = 0;
+    public 
 
     // Start is called before the first frame update
     void Start()
